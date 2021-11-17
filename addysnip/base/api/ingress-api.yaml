@@ -4,6 +4,7 @@ metadata:
   name: api
   namespace: addysnip
 spec:
+  ingressClassName: nginx
   rules:
   - host: api.dev.addysnip.com
     http:

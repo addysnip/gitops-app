@@ -4,6 +4,7 @@ metadata:
   name: ui-dashboard
   namespace: addysnip
 spec:
+  ingressClassName: nginx
   rules:
   - host: dashboard.dev.addysnip.com
     http:
