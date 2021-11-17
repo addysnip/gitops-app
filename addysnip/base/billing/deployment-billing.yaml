@@ -1,9 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    deployment.kubernetes.io/revision: "19"
-    field.cattle.io/publicEndpoints: '[{"addresses":["138.197.153.183"],"port":30000,"protocol":"TCP","serviceName":"addysnip-dev:billing-np","allNodes":true}]'
   name: billing
   namespace: addysnip
 spec:

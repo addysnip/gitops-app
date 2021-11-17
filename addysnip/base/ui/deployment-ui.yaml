@@ -1,9 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    deployment.kubernetes.io/revision: "16"
-    field.cattle.io/publicEndpoints: '[{"addresses":[""],"port":443,"protocol":"HTTPS","serviceName":"addysnip-dev:ui","ingressName":"addysnip-dev:ui","hostname":"www.dev.addysnip.com","path":"/","allNodes":false}]'
   name: ui
   namespace: addysnip
 spec:

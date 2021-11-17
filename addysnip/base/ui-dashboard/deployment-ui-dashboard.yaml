@@ -1,9 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    deployment.kubernetes.io/revision: "10"
-    field.cattle.io/publicEndpoints: '[{"addresses":[""],"port":443,"protocol":"HTTPS","serviceName":"addysnip-dev:ui-dashboard","ingressName":"addysnip-dev:ui-dashboard","hostname":"dashboard.dev.addysnip.com","path":"/","allNodes":false}]'
   name: ui-dashboard
   namespace: addysnip
 spec:
