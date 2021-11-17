@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    field.cattle.io/targetWorkloadIds: '["addysnip-dev/api"]'
+    management.cattle.io/ui-managed: "true"
+  name: api
+  namespace: addysnip
+spec:
+  clusterIP: 10.245.11.198
+  clusterIPs:
+  - 10.245.11.198
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: 3000tcp
+    port: 3000
+  selector:
+    workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-api

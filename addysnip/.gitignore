@@ -1,0 +1,4 @@
+**/secret-*
+**/secrets/data-*json
+ext-secrets
+**/*.sh

@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    field.cattle.io/publicEndpoints: '[{"addresses":[""],"port":443,"protocol":"HTTPS","serviceName":"addysnip-dev:ui-dashboard","ingressName":"addysnip-dev:ui-dashboard","hostname":"dashboard.dev.addysnip.com","path":"/","allNodes":false}]'
+  name: ui-dashboard
+  namespace: addysnip
+spec:
+  rules:
+  - host: dashboard.dev.addysnip.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: ui-dashboard
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - dashboard.dev.addysnip.com
+    secretName: addysnip-com-tls

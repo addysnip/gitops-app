@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    field.cattle.io/targetWorkloadIds: '["addysnip-dev/billing"]'
+    management.cattle.io/ui-managed: "true"
+  name: billing
+  namespace: addysnip
+spec:
+  clusterIP: 10.245.190.217
+  clusterIPs:
+  - 10.245.190.217
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: 5000tcp
+    port: 5000
+  selector:
+    workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-billing

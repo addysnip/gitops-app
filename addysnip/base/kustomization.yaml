@@ -1,0 +1,34 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+metadata:
+  name: base-addysnip
+
+resources:
+- secrets/extsecret-analytics-service.yaml
+- secrets/extsecret-api.yaml
+- secrets/extsecret-billing.yaml
+- secrets/extsecret-database.yaml
+- secrets/extsecret-path-service.yaml
+- secrets/extsecret-rabbitmq.yaml
+- secrets/extsecret-redis.yaml
+- secrets/extsecret-smtp-noreply.yaml
+- analytics-service/deployment-analytics-service.yaml
+- analytics-service/service-analytics-service.yaml
+- api/deployment-api.yaml
+- api/ingress-api.yaml
+- api/service-api.yaml
+- billing/deployment-billing.yaml
+- billing/service-billing.yaml
+- delayed-service/deployment-delayed-service.yaml
+- domain-service/deployment-domain-service.yaml
+- domain-service/rbac.yaml
+- emailer/deployment-emailer.yaml
+- emailer/service-emailer.yaml
+- path-service/deployment-path-service.yaml
+- path-service/service-path-service.yaml
+- ui/deployment-ui.yaml
+- ui/ingress-ui.yaml
+- ui/service-ui.yaml
+- ui-dashboard/deployment-ui-dashboard.yaml
+- ui-dashboard/ingress-ui-dashboard.yaml
+- ui-dashboard/service-ui-dashboard.yaml
