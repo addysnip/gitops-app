@@ -32,6 +32,9 @@ images:
 - name: gcr.addysnip/delayed-service
   newName: gcr.addysnip/delayed-service
   newTag: 2f448df7
+- name: gcr.io/addysnip/addysnip/api
+  newName: gcr.io/addysnip/addysnip/api
+  newTag: b87404fd
 - name: gcr.io/addysnip/addysnip/domain-service
   newName: gcr.io/addysnip/addysnip/domain-service
   newTag: 6db48ca0
