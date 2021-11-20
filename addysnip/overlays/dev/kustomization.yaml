@@ -8,6 +8,9 @@ images:
 - name: gcr.addysnip/addysnip/analytics-service
   newName: gcr.addysnip/addysnip/analytics-service
   newTag: d0df0e6f
+- name: gcr.addysnip/addysnip/api
+  newName: gcr.addysnip/addysnip/api
+  newTag: 46a3f52e
 - name: gcr.addysnip/addysnip/domain-service
   newName: gcr.addysnip/addysnip/domain-service
   newTag: 8956f5a7
