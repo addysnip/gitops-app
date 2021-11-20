@@ -4,10 +4,12 @@ metadata:
   name: base-addysnip
 
 resources:
+- certificate/certificate.yaml
 - secrets/extsecret-analytics-service.yaml
 - secrets/extsecret-api.yaml
 - secrets/extsecret-billing.yaml
 - secrets/extsecret-database.yaml
+- secrets/extsecret-gar-image-pull.yaml
 - secrets/extsecret-path-service.yaml
 - secrets/extsecret-rabbitmq.yaml
 - secrets/extsecret-redis.yaml

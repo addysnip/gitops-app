@@ -1,9 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    deployment.kubernetes.io/revision: "15"
-    field.cattle.io/creatorId: user-btktp
   labels:
     cattle.io/creator: norman
     workload.user.cattle.io/workloadselector: deployment-addysnip-dev-emailer

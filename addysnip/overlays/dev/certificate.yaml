@@ -1,0 +1,10 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: addysnip-com
+  namespace: addysnip
+spec:
+  dnsNames:
+  - addysnip.com
+  - "dev.addysnip.com"
+  - "*.dev.addysnip.com"

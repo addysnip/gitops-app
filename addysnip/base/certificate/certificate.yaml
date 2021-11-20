@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: addysnip-com
+  namespace: addysnip
+spec:
+  secretName: addysnip-com-tls
+  issuerRef:
+    name: cloudflare-clusterissuer
+    kind: ClusterIssuer
+  dnsNames:
+  - addysnip.com
+  - "api.addysnip.com"
+  - "www.addysnip.com"
+  - "dashboard.addysnip.com"
