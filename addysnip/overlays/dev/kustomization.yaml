@@ -8,6 +8,9 @@ images:
 - name: gcr.addysnip/addysnip/emailer
   newName: gcr.addysnip/addysnip/emailer
   newTag: 2d5b0c71
+- name: gcr.addysnip/addysnip/path-service
+  newName: gcr.addysnip/addysnip/path-service
+  newTag: 9526a7cb
 - name: gcr.addysnip/addysnip/ui
   newName: gcr.addysnip/addysnip/ui
   newTag: cfbd9802
