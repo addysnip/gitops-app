@@ -11,3 +11,6 @@ images:
 - name: gcr.addysnip/billing
   newName: gcr.addysnip/billing
   newTag: b0ebe125
+- name: gcr.addysnip/delayed-service
+  newName: gcr.addysnip/delayed-service
+  newTag: 2f448df7
