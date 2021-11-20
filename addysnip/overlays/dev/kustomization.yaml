@@ -50,6 +50,9 @@ images:
 - name: gcr.io/addysnip/addysnip/ui
   newName: gcr.io/addysnip/addysnip/ui
   newTag: 18f68c23
+- name: gcr.io/addysnip/addysnip/ui-dashboard
+  newName: gcr.io/addysnip/addysnip/ui-dashboard
+  newTag: 125beb82
 - name: gcr.io/addysnip/billing
   newName: gcr.io/addysnip/billing
   newTag: 78c28a0f
