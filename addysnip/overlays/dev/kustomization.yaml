@@ -5,6 +5,9 @@ kind: Kustomization
 resources:
 - ../../base
 images:
+- name: gcr.addysnip/addysnip/analytics-service
+  newName: gcr.addysnip/addysnip/analytics-service
+  newTag: d0df0e6f
 - name: gcr.addysnip/addysnip/emailer
   newName: gcr.addysnip/addysnip/emailer
   newTag: 2d5b0c71
