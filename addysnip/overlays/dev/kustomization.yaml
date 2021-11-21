@@ -35,7 +35,7 @@ images:
   newTag: f7aa8a08
 - name: gcr.io/addysnip/addysnip/api
   newName: gcr.io/addysnip/addysnip/api
-  newTag: b87404fd
+  newTag: 7ed3f214
 - name: gcr.io/addysnip/addysnip/domain-service
   newName: gcr.io/addysnip/addysnip/domain-service
   newTag: 6db48ca0
@@ -58,7 +58,7 @@ images:
   newName: gcr.io/addysnip/delayed-service
   newTag: 5a354efa
 patchesStrategicMerge:
-  - certificate.yaml
-  - ingress-api.yaml
-  - ingress-ui.yaml
-  - ingress-ui-dashboard.yaml
+- certificate.yaml
+- ingress-api.yaml
+- ingress-ui.yaml
+- ingress-ui-dashboard.yaml
