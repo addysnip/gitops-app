@@ -3,6 +3,9 @@ kind: Kustomization
 resources:
 - ../../base
 images:
+- name: gcr.io/addysnip/analytics-service
+  newName: gcr.io/addysnip/analytics-service
+  newTag: ef8a8e5a
 - name: gcr.io/addysnip/api
   newName: gcr.io/addysnip/api
   newTag: e1da37e0
