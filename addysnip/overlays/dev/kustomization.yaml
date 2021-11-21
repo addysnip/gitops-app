@@ -1,5 +1,62 @@
-bases:
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
 - ../../base
+images:
+- name: gcr.addysnip/addysnip/analytics-service
+  newName: gcr.addysnip/addysnip/analytics-service
+  newTag: d0df0e6f
+- name: gcr.addysnip/addysnip/api
+  newName: gcr.addysnip/addysnip/api
+  newTag: 46a3f52e
+- name: gcr.addysnip/addysnip/domain-service
+  newName: gcr.addysnip/addysnip/domain-service
+  newTag: 8956f5a7
+- name: gcr.addysnip/addysnip/emailer
+  newName: gcr.addysnip/addysnip/emailer
+  newTag: 2d5b0c71
+- name: gcr.addysnip/addysnip/path-service
+  newName: gcr.addysnip/addysnip/path-service
+  newTag: 9526a7cb
+- name: gcr.addysnip/addysnip/ui
+  newName: gcr.addysnip/addysnip/ui
+  newTag: cfbd9802
+- name: gcr.addysnip/addysnip/ui-dashboard
+  newName: gcr.addysnip/addysnip/ui-dashboard
+  newTag: b7c1d491
+- name: gcr.addysnip/billing
+  newName: gcr.addysnip/billing
+  newTag: b0ebe125
+- name: gcr.addysnip/delayed-service
+  newName: gcr.addysnip/delayed-service
+  newTag: 2f448df7
+- name: gcr.io/addysnip/addysnip/analytics-service
+  newName: gcr.io/addysnip/addysnip/analytics-service
+  newTag: f7aa8a08
+- name: gcr.io/addysnip/addysnip/api
+  newName: gcr.io/addysnip/addysnip/api
+  newTag: b87404fd
+- name: gcr.io/addysnip/addysnip/domain-service
+  newName: gcr.io/addysnip/addysnip/domain-service
+  newTag: 6db48ca0
+- name: gcr.io/addysnip/addysnip/emailer
+  newName: gcr.io/addysnip/addysnip/emailer
+  newTag: 898f38f1
+- name: gcr.io/addysnip/addysnip/path-service
+  newName: gcr.io/addysnip/addysnip/path-service
+  newTag: f6b66ee2
+- name: gcr.io/addysnip/addysnip/ui
+  newName: gcr.io/addysnip/addysnip/ui
+  newTag: 18f68c23
+- name: gcr.io/addysnip/addysnip/ui-dashboard
+  newName: gcr.io/addysnip/addysnip/ui-dashboard
+  newTag: 125beb82
+- name: gcr.io/addysnip/billing
+  newName: gcr.io/addysnip/billing
+  newTag: 78c28a0f
+- name: gcr.io/addysnip/delayed-service
+  newName: gcr.io/addysnip/delayed-service
+  newTag: 5a354efa
 patchesStrategicMerge:
   - certificate.yaml
   - ingress-api.yaml
