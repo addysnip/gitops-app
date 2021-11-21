@@ -6,6 +6,9 @@ images:
 - name: gcr.io/addysnip/domain-service
   newName: gcr.io/addysnip/domain-service
   newTag: 01c2f1f9
+- name: gcr.io/addysnip/emailer
+  newName: gcr.io/addysnip/emailer
+  newTag: 056f070e
 patchesStrategicMerge:
 - certificate.yaml
 - ingress-api.yaml
