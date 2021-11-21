@@ -1,5 +1,3 @@
-patchesStrategicMerge:
-- certificate.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
@@ -59,3 +57,8 @@ images:
 - name: gcr.io/addysnip/delayed-service
   newName: gcr.io/addysnip/delayed-service
   newTag: 5a354efa
+patchesStrategicMerge:
+  - certificate.yaml
+  - ingress-api.yaml
+  - ingress-ui.yaml
+  - ingress-ui-dashboard.yaml
