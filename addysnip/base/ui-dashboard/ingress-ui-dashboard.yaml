@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: dashboard.dev.addysnip.com
+  - host: dashboard.addysnip.com
     http:
       paths:
       - backend:
@@ -18,5 +18,5 @@ spec:
         pathType: Prefix
   tls:
   - hosts:
-    - dashboard.dev.addysnip.com
+    - dashboard.addysnip.com
     secretName: addysnip-com-tls

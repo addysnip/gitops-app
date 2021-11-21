@@ -2,3 +2,6 @@ bases:
 - ../../base
 patchesStrategicMerge:
   - certificate.yaml
+  - ingress-api.yaml
+  - ingress-ui.yaml
+  - ingress-ui-dashboard.yaml

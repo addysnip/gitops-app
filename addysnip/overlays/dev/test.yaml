@@ -1,0 +1,877 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: redirector-service
+  namespace: addysnip
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: redirector-service
+  namespace: redirector-dev
+rules:
+- apiGroups:
+  - cert-manager.io
+  resources:
+  - certificates
+  - certificates/status
+  - certificaterequests
+  - certificaterequests/status
+  verbs:
+  - create
+  - delete
+  - update
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - get
+  - list
+  - create
+  - delete
+  - update
+  - watch
+- apiGroups:
+  - networking.k8s.io
+  resources:
+  - ingresses
+  verbs:
+  - get
+  - list
+  - create
+  - delete
+  - update
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: redirector-service
+  namespace: redirector-dev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: redirector-service
+subjects:
+- kind: ServiceAccount
+  name: redirector-service
+  namespace: addysnip
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: analytics-service
+  namespace: addysnip
+spec:
+  clusterIP: 10.245.133.92
+  clusterIPs:
+  - 10.245.133.92
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: 5000tcp
+    port: 5000
+  selector:
+    workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-analytics-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api
+  namespace: addysnip
+spec:
+  clusterIP: 10.245.11.198
+  clusterIPs:
+  - 10.245.11.198
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: 3000tcp
+    port: 3000
+  selector:
+    workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: billing
+  namespace: addysnip
+spec:
+  clusterIP: 10.245.190.217
+  clusterIPs:
+  - 10.245.190.217
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: 5000tcp
+    port: 5000
+  selector:
+    workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-billing
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: emailer
+  namespace: addysnip
+spec:
+  clusterIP: None
+  clusterIPs:
+  - None
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: default
+    port: 42
+  selector:
+    workload.user.cattle.io/workloadselector: deployment-addysnip-dev-emailer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: path-service
+  namespace: addysnip
+spec:
+  clusterIP: 10.245.150.229
+  clusterIPs:
+  - 10.245.150.229
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: 5000tcp
+    port: 5000
+  selector:
+    workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-path-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ui
+  namespace: addysnip
+spec:
+  clusterIP: 10.245.135.82
+  clusterIPs:
+  - 10.245.135.82
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: 80tcp
+    port: 80
+  selector:
+    workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-ui
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ui-dashboard
+  namespace: addysnip
+spec:
+  clusterIP: 10.245.6.120
+  clusterIPs:
+  - 10.245.6.120
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: 80tcp
+    port: 80
+  selector:
+    workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-ui-dashboard
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: analytics-service
+  namespace: addysnip
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-analytics-service
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        cattle.io/timestamp: "2021-11-13T22:51:44Z"
+      creationTimestamp: null
+      labels:
+        workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-analytics-service
+    spec:
+      containers:
+      - command:
+        - /app/app
+        - -v
+        - consumer
+        env:
+        - name: RABBITMQ_QUEUE
+          value: analytics-dev
+        envFrom:
+        - secretRef:
+            name: analytics-service
+            optional: false
+        - secretRef:
+            name: rabbitmq
+            optional: false
+        - secretRef:
+            name: database
+            optional: false
+        - secretRef:
+            name: redis
+            optional: false
+        image: gcr.io/addysnip/analytics-service:2caa2880
+        imagePullPolicy: Always
+        name: analytics-service
+        ports:
+        - containerPort: 5000
+          name: 5000tcp
+          protocol: TCP
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: gar-json-key
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  namespace: addysnip
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-api
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        cattle.io/timestamp: "2021-11-13T23:05:55Z"
+      creationTimestamp: null
+      labels:
+        workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-api
+    spec:
+      containers:
+      - command:
+        - /app/app
+        - -v
+        - server
+        env:
+        - name: GRPC_GO_LOG_VERBOSITY_LEVEL
+          value: "99"
+        - name: GRPC_GO_LOG_SEVERITY_LEVEL
+          value: info
+        envFrom:
+        - secretRef:
+            name: api
+            optional: false
+        - secretRef:
+            name: database
+            optional: false
+        image: gcr.io/addysnip/api:757d3096
+        imagePullPolicy: Always
+        name: api
+        ports:
+        - containerPort: 3000
+          name: 3000tcp
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 3000
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: gar-json-key
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: billing
+  namespace: addysnip
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-billing
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        cattle.io/timestamp: "2021-11-01T03:52:20Z"
+      creationTimestamp: null
+      labels:
+        workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-billing
+    spec:
+      containers:
+      - command:
+        - /app/app
+        - -v
+        - consumer
+        env:
+        - name: RABBITMQ_QUEUE
+          value: billing
+        envFrom:
+        - secretRef:
+            name: billing
+            optional: false
+        - secretRef:
+            name: database
+            optional: false
+        - secretRef:
+            name: rabbitmq
+            optional: false
+        image: gcr.io/addysnip/billing:243a9ef7
+        imagePullPolicy: Always
+        name: billing
+        ports:
+        - containerPort: 5000
+          name: 5000tcp
+          protocol: TCP
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: gar-json-key
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: delayed-service
+  namespace: addysnip
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-delayed-service
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        cattle.io/timestamp: "2021-11-11T19:54:06Z"
+      creationTimestamp: null
+      labels:
+        workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-delayed-service
+    spec:
+      containers:
+      - env:
+        - name: DEBUG
+          value: "true"
+        envFrom:
+        - secretRef:
+            name: database
+            optional: false
+        - secretRef:
+            name: rabbitmq
+            optional: false
+        image: gcr.io/addysnip/delayed-service:4a9b04eb
+        imagePullPolicy: Always
+        name: delayed-service
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: gar-json-key
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: domain-service
+  namespace: addysnip
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-domain-service
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        cattle.io/timestamp: "2021-11-12T01:18:26Z"
+      creationTimestamp: null
+      labels:
+        workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-domain-service
+    spec:
+      containers:
+      - env:
+        - name: K8S_NAMESPACE
+          value: redirector-dev
+        - name: DEBUG
+          value: "true"
+        envFrom:
+        - secretRef:
+            name: database
+            optional: false
+        - secretRef:
+            name: rabbitmq
+            optional: false
+        image: gcr.io/addysnip/domain-service:2351c217
+        imagePullPolicy: Always
+        name: domain-service
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: gar-json-key
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      serviceAccount: redirector-service
+      serviceAccountName: redirector-service
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    cattle.io/creator: norman
+    workload.user.cattle.io/workloadselector: deployment-addysnip-dev-emailer
+  name: emailer
+  namespace: addysnip
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: deployment-addysnip-dev-emailer
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        cattle.io/timestamp: "2021-11-06T04:09:52Z"
+      creationTimestamp: null
+      labels:
+        workload.user.cattle.io/workloadselector: deployment-addysnip-dev-emailer
+    spec:
+      containers:
+      - env:
+        - name: RABBITMQ_QUEUE
+          value: emailer-dev
+        envFrom:
+        - secretRef:
+            name: database
+        - secretRef:
+            name: rabbitmq
+        - secretRef:
+            name: smtp-noreply
+        image: gcr.io/addysnip/emailer:956f19f1
+        imagePullPolicy: Always
+        name: emailer
+        securityContext:
+          allowPrivilegeEscalation: false
+          privileged: false
+          readOnlyRootFilesystem: false
+          runAsNonRoot: false
+        stdin: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        tty: true
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: gar-json-key
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: path-service
+  namespace: addysnip
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-path-service
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        cattle.io/timestamp: "2021-11-13T06:03:27Z"
+      creationTimestamp: null
+      labels:
+        workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-path-service
+    spec:
+      containers:
+      - env:
+        - name: RABBITMQ_QUEUE
+          value: path-dev
+        envFrom:
+        - secretRef:
+            name: database
+            optional: false
+        - secretRef:
+            name: rabbitmq
+            optional: false
+        - secretRef:
+            name: path-service
+            optional: false
+        - secretRef:
+            name: redis
+            optional: false
+        image: gcr.io/addysnip/path-service:bc36b8cb
+        imagePullPolicy: Always
+        name: path-service
+        ports:
+        - containerPort: 5000
+          name: 5000tcp
+          protocol: TCP
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: gar-json-key
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui
+  namespace: addysnip
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-ui
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-ui
+    spec:
+      containers:
+      - image: gcr.io/addysnip/ui:80c1c4ea
+        imagePullPolicy: Always
+        name: ui
+        ports:
+        - containerPort: 80
+          name: 80tcp
+          protocol: TCP
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: gar-json-key
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui-dashboard
+  namespace: addysnip
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-ui-dashboard
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-ui-dashboard
+    spec:
+      containers:
+      - image: gcr.io/addysnip/ui-dashboard:f15fd028
+        imagePullPolicy: Always
+        name: ui-dashboard
+        ports:
+        - containerPort: 80
+          name: 80tcp
+          protocol: TCP
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: gar-json-key
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: addysnip-com
+  namespace: addysnip
+spec:
+  dnsNames:
+  - addysnip.com
+  - dev.addysnip.com
+  - '*.dev.addysnip.com'
+  issuerRef:
+    kind: ClusterIssuer
+    name: cloudflare-clusterissuer
+  secretName: addysnip-com-tls
+---
+apiVersion: external-secrets.io/v1alpha1
+kind: ExternalSecret
+metadata:
+  name: extsecret-analytics-service
+  namespace: addysnip
+spec:
+  dataFrom:
+  - key: analytics-service
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: gcp-secretstore
+  target:
+    creationPolicy: Owner
+    name: analytics-service
+---
+apiVersion: external-secrets.io/v1alpha1
+kind: ExternalSecret
+metadata:
+  name: extsecret-api
+  namespace: addysnip
+spec:
+  dataFrom:
+  - key: api
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: gcp-secretstore
+  target:
+    creationPolicy: Owner
+    name: api
+---
+apiVersion: external-secrets.io/v1alpha1
+kind: ExternalSecret
+metadata:
+  name: extsecret-billing
+  namespace: addysnip
+spec:
+  dataFrom:
+  - key: billing
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: gcp-secretstore
+  target:
+    creationPolicy: Owner
+    name: billing
+---
+apiVersion: external-secrets.io/v1alpha1
+kind: ExternalSecret
+metadata:
+  name: extsecret-database
+  namespace: addysnip
+spec:
+  dataFrom:
+  - key: database
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: gcp-secretstore
+  target:
+    creationPolicy: Owner
+    name: database
+---
+apiVersion: external-secrets.io/v1alpha1
+kind: ExternalSecret
+metadata:
+  name: extsecret-gar-image-pull
+  namespace: addysnip
+spec:
+  data:
+  - remoteRef:
+      key: gar-image-pull
+    secretKey: garjson
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: gcp-secretstore
+  target:
+    creationPolicy: Owner
+    name: gar-json-key
+    template:
+      data:
+        .dockerconfigjson: '{{ .garjson | toString }}'
+      type: kubernetes.io/dockerconfigjson
+---
+apiVersion: external-secrets.io/v1alpha1
+kind: ExternalSecret
+metadata:
+  name: extsecret-path-service
+  namespace: addysnip
+spec:
+  dataFrom:
+  - key: path-service
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: gcp-secretstore
+  target:
+    creationPolicy: Owner
+    name: path-service
+---
+apiVersion: external-secrets.io/v1alpha1
+kind: ExternalSecret
+metadata:
+  name: extsecret-rabbitmq
+  namespace: addysnip
+spec:
+  dataFrom:
+  - key: rabbitmq
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: gcp-secretstore
+  target:
+    creationPolicy: Owner
+    name: rabbitmq
+---
+apiVersion: external-secrets.io/v1alpha1
+kind: ExternalSecret
+metadata:
+  name: extsecret-redis
+  namespace: addysnip
+spec:
+  dataFrom:
+  - key: redis
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: gcp-secretstore
+  target:
+    creationPolicy: Owner
+    name: redis
+---
+apiVersion: external-secrets.io/v1alpha1
+kind: ExternalSecret
+metadata:
+  name: extsecret-smtp-noreply
+  namespace: addysnip
+spec:
+  dataFrom:
+  - key: smtp-noreply
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: gcp-secretstore
+  target:
+    creationPolicy: Owner
+    name: smtp-noreply
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api
+  namespace: addysnip
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: api.dev.addysnip.com
+  tls:
+  - hosts:
+    - api.dev.addysnip.com
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ui
+  namespace: addysnip
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: www.dev.addysnip.com
+  tls:
+  - hosts:
+    - www.dev.addysnip.com
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ui-dashboard
+  namespace: addysnip
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: dashboard.dev.addysnip.com
+  tls:
+  - hosts:
+    - dashboard.dev.addysnip.com
