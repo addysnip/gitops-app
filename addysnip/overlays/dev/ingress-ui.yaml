@@ -4,8 +4,19 @@ metadata:
   name: ui
   namespace: addysnip
 spec:
+  ingressClassName: nginx
   rules:
   - host: www.dev.addysnip.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: ui
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
   tls:
   - hosts:
     - www.dev.addysnip.com
+    secretName: addysnip-com-tls

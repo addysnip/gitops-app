@@ -4,8 +4,19 @@ metadata:
   name: ui-dashboard
   namespace: addysnip
 spec:
+  ingressClassName: nginx
   rules:
   - host: dashboard.dev.addysnip.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: ui-dashboard
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
   tls:
   - hosts:
     - dashboard.dev.addysnip.com
+    secretName: addysnip-com-tls
