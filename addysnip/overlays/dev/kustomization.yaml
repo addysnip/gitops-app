@@ -26,7 +26,7 @@ images:
   newTag: ae369000
 - name: gcr.io/addysnip/ui
   newName: gcr.io/addysnip/ui
-  newTag: ba975b79
+  newTag: f27cbd69
 - name: gcr.io/addysnip/ui-dashboard
   newName: gcr.io/addysnip/ui-dashboard
   newTag: 17f7d38f
