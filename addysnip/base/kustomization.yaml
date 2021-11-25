@@ -4,6 +4,7 @@ metadata:
   name: base-addysnip
 
 resources:
+- namespaces/redirector.yaml
 - certificate/certificate.yaml
 - secrets/extsecret-analytics-service.yaml
 - secrets/extsecret-api.yaml
