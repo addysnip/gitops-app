@@ -1,4 +1,4 @@
-namespace: addysnip
+defaultNamespace: addysnip
 targetCustomizations:
 - name: dev
   clusterSelector:
