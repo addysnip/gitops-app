@@ -23,7 +23,7 @@ images:
   newTag: 056f070e
 - name: gcr.io/addysnip/path-service
   newName: gcr.io/addysnip/path-service
-  newTag: 9a447be7
+  newTag: ae369000
 - name: gcr.io/addysnip/ui
   newName: gcr.io/addysnip/ui
   newTag: ba975b79
