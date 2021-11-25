@@ -20,7 +20,7 @@ images:
   newTag: 29a1a390
 - name: gcr.io/addysnip/emailer
   newName: gcr.io/addysnip/emailer
-  newTag: 056f070e
+  newTag: 94c705a5
 - name: gcr.io/addysnip/path-service
   newName: gcr.io/addysnip/path-service
   newTag: ae369000
