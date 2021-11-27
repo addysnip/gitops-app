@@ -35,3 +35,7 @@ resources:
 - ui-dashboard/deployment-ui-dashboard.yaml
 - ui-dashboard/ingress-ui-dashboard.yaml
 - ui-dashboard/service-ui-dashboard.yaml
+images:
+- name: gcr.io/addysnip/api
+  newName: gcr.io/addysnip/api
+  newTag: d5c81392
