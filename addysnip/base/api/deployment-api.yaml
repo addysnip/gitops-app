@@ -40,6 +40,9 @@ spec:
         - secretRef:
             name: database
             optional: false
+        - secretRef:
+            name: redis
+            optional: false
         image: gcr.io/addysnip/api:757d3096
         imagePullPolicy: Always
         name: api
