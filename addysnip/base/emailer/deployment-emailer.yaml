@@ -29,7 +29,7 @@ spec:
       containers:
       - env:
         - name: RABBITMQ_QUEUE
-          value: emailer-dev
+          value: emailer
         envFrom:
         - secretRef:
             name: database
