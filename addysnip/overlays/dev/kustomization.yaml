@@ -42,3 +42,4 @@ patchesStrategicMerge:
 - extsecret-path-service.yaml
 - extsecret-rabbitmq.yaml
 - extsecret-redis.yaml
+- deployment-domain-service.yaml

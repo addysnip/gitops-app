@@ -29,6 +29,8 @@ spec:
           value: redirector-dev
         - name: DEBUG
           value: "true"
+        - name: EXT_SVC_HOSTNAME
+          value: "svc.addysnip.com"
         envFrom:
         - secretRef:
             name: database
