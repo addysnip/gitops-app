@@ -17,6 +17,7 @@ resources:
 - secrets/extsecret-smtp-noreply.yaml
 - analytics-service/deployment-analytics-service.yaml
 - analytics-service/service-analytics-service.yaml
+- analytics-service/cronjob-analytics.yaml
 - api/deployment-api.yaml
 - api/ingress-api.yaml
 - api/service-api.yaml
