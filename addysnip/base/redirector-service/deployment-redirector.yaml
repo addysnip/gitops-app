@@ -30,6 +30,12 @@ spec:
         env:
         - name: API_URL
           value: "http://api.addysnip.svc:3000"
+        - name: RABBITMQ_ANALYTICS_QUEUE
+          value: analytics
+        envFrom:
+        - secretRef:
+            name: rabbitmq
+            optional: false
         ports:
         - containerPort: 3000
           name: 3000tcp
