@@ -5,7 +5,7 @@ resources:
 images:
 - name: gcr.io/addysnip/analytics-service
   newName: gcr.io/addysnip/analytics-service
-  newTag: e52b0fb3
+  newTag: 08727d79
 - name: gcr.io/addysnip/api
   newName: gcr.io/addysnip/api
   newTag: 2ef8af3e
