@@ -29,7 +29,7 @@ images:
   newTag: ae1b6dc5
 - name: gcr.io/addysnip/redirector-service
   newName: gcr.io/addysnip/redirector-service
-  newTag: c13dc4e5
+  newTag: 86d2de04
 - name: gcr.io/addysnip/ui
   newName: gcr.io/addysnip/ui
   newTag: f27cbd69
