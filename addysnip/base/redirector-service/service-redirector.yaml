@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redirector
+  namespace: redirector
+spec:
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: 3000tcp
+    port: 3000
+  selector:
+    workload.user.cattle.io/workloadselector: apps.deployment-redirector-service

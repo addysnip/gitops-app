@@ -29,6 +29,8 @@ resources:
 - emailer/service-emailer.yaml
 - path-service/deployment-path-service.yaml
 - path-service/service-path-service.yaml
+- redirector-service/deployment-redirector.yaml
+- redirector-service/service-redirector.yaml
 - ui/deployment-ui.yaml
 - ui/ingress-ui.yaml
 - ui/service-ui.yaml
