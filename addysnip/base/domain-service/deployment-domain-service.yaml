@@ -26,7 +26,7 @@ spec:
       containers:
       - env:
         - name: K8S_NAMESPACE
-          value: redirector-dev
+          value: redirector
         - name: DEBUG
           value: "true"
         - name: EXT_SVC_HOSTNAME
