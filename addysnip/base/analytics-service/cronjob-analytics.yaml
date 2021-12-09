@@ -17,6 +17,22 @@ spec:
             - /app/app
             - -v
             - sync
+            env:
+            - name: RABBITMQ_QUEUE
+              value: analytics
+            envFrom:
+            - secretRef:
+                name: analytics-service
+                optional: false
+            - secretRef:
+                name: rabbitmq
+                optional: false
+            - secretRef:
+                name: database
+                optional: false
+            - secretRef:
+                name: redis
+                optional: false
           restartPolicy: OnFailure
           imagePullSecrets:
           - name: gar-json-key

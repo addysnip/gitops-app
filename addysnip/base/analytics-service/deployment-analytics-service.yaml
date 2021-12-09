@@ -30,7 +30,7 @@ spec:
         - consumer
         env:
         - name: RABBITMQ_QUEUE
-          value: analytics-dev
+          value: analytics
         envFrom:
         - secretRef:
             name: analytics-service
