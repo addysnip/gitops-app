@@ -24,7 +24,7 @@ spec:
         workload.user.cattle.io/workloadselector: apps.deployment-redirector-service
     spec:
       containers:
-      - image: gcr.io/addysnip/redirector-service:9d9b7e50
+      - image: gcr.io/addysnip/redirector-service:71b74510
         imagePullPolicy: Always
         name: redirector-service
         ports:
