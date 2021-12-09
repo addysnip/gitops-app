@@ -18,3 +18,5 @@ spec:
             - -v
             - sync
           restartPolicy: OnFailure
+          imagePullSecrets:
+          - name: gar-json-key
