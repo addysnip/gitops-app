@@ -14,7 +14,7 @@ images:
   newTag: 103efa57
 - name: gcr.io/addysnip/delayed-service
   newName: gcr.io/addysnip/delayed-service
-  newTag: c79527f0
+  newTag: 756d495f
 - name: gcr.io/addysnip/domain-service
   newName: gcr.io/addysnip/domain-service
   newTag: 4a1d90ab
