@@ -27,6 +27,9 @@ spec:
       - image: gcr.io/addysnip/redirector-service:71b74510
         imagePullPolicy: Always
         name: redirector-service
+        env:
+        - name: API_URL
+          value: "http://api.addysnip.svc:3000"
         ports:
         - containerPort: 3000
           name: 3000tcp
