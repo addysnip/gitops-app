@@ -30,6 +30,9 @@ images:
 - name: gcr.io/addysnip/redirector-service
   newName: gcr.io/addysnip/redirector-service
   newTag: fc7616b8
+- name: gcr.io/addysnip/tasks-service
+  newName: gcr.io/addysnip/tasks-service
+  newTag: 93f3d7d7
 - name: gcr.io/addysnip/ui
   newName: gcr.io/addysnip/ui
   newTag: f27cbd69
