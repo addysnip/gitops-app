@@ -24,7 +24,7 @@ spec:
         workload.user.cattle.io/workloadselector: apps.deployment-addysnip-dev-tasks-service
     spec:
       containers:
-        envFrom:
+      - envFrom:
         - secretRef:
             name: database
             optional: false
