@@ -34,6 +34,9 @@ spec:
         - secretRef:
             name: rabbitmq
             optional: false
+        - secretRef:
+            name: discord-webhook
+            optional: false
         image: gcr.io/addysnip/delayed-service:4a9b04eb
         imagePullPolicy: Always
         name: delayed-service

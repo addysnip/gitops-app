@@ -37,6 +37,9 @@ spec:
             name: rabbitmq
         - secretRef:
             name: smtp-noreply
+        - secretRef:
+            name: discord-webhook
+            optional: false
         image: gcr.io/addysnip/emailer:956f19f1
         imagePullPolicy: Always
         name: emailer

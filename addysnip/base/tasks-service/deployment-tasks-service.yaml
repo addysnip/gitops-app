@@ -28,6 +28,9 @@ spec:
         - secretRef:
             name: database
             optional: false
+        - secretRef:
+            name: discord-webhook
+            optional: false
         image: gcr.io/addysnip/tasks-service:93f3d7d7
         imagePullPolicy: Always
         name: tasks-service

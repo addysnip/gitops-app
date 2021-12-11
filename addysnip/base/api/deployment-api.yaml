@@ -43,6 +43,12 @@ spec:
         - secretRef:
             name: redis
             optional: false
+        - secretRef:
+            name: stripe-webhook
+            optional: false
+        - secretRef:
+            name: discord-webhook
+            optional: false
         image: gcr.io/addysnip/api:757d3096
         imagePullPolicy: Always
         name: api

@@ -40,6 +40,9 @@ spec:
         - secretRef:
             name: redis
             optional: false
+        - secretRef:
+            name: discord-webhook
+            optional: false
         image: gcr.io/addysnip/path-service:bc36b8cb
         imagePullPolicy: Always
         name: path-service

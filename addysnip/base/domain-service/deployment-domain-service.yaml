@@ -38,6 +38,9 @@ spec:
         - secretRef:
             name: rabbitmq
             optional: false
+        - secretRef:
+            name: discord-webhook
+            optional: false
         image: gcr.io/addysnip/domain-service:2351c217
         imagePullPolicy: Always
         name: domain-service
