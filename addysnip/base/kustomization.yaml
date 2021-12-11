@@ -49,6 +49,9 @@ images:
 - name: gcr.io/addysnip/billing
   newName: gcr.io/addysnip/billing
   newTag: "23825651"
+- name: gcr.io/addysnip/delayed-service
+  newName: gcr.io/addysnip/delayed-service
+  newTag: cea7bb73
 - name: gcr.io/addysnip/emailer
   newName: gcr.io/addysnip/emailer
   newTag: 4dc7bc38
