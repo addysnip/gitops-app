@@ -38,7 +38,7 @@ spec:
         - secretRef:
             name: smtp-noreply
         - secretRef:
-            name: discord-webhook
+            name: discord-error-webhook
             optional: false
         image: gcr.io/addysnip/emailer:956f19f1
         imagePullPolicy: Always

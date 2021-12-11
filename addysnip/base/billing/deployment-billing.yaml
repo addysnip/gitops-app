@@ -45,7 +45,7 @@ spec:
             name: stripe-webhook
             optional: false
         - secretRef:
-            name: discord-webhook
+            name: discord-error-webhook
             optional: false
         image: gcr.io/addysnip/billing:243a9ef7
         imagePullPolicy: Always

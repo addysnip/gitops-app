@@ -37,7 +37,7 @@ spec:
             name: rabbitmq
             optional: false
         - secretRef:
-            name: discord-webhook
+            name: discord-error-webhook
             optional: false
         ports:
         - containerPort: 3000
