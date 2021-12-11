@@ -43,6 +43,9 @@ resources:
 - ui-dashboard/service-ui-dashboard.yaml
 - clusterissuer.yaml
 images:
+- name: gcr.io/addysnip/analytics-service
+  newName: gcr.io/addysnip/analytics-service
+  newTag: 59fd5bed
 - name: gcr.io/addysnip/api
   newName: gcr.io/addysnip/api
   newTag: 281b6d5b
