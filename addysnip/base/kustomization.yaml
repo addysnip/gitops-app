@@ -49,3 +49,6 @@ images:
 - name: gcr.io/addysnip/billing
   newName: gcr.io/addysnip/billing
   newTag: "23825651"
+- name: gcr.io/addysnip/tasks-service
+  newName: gcr.io/addysnip/tasks-service
+  newTag: 0a8bfa52
