@@ -43,4 +43,4 @@ resources:
 images:
 - name: gcr.io/addysnip/api
   newName: gcr.io/addysnip/api
-  newTag: 2ce4b3b7
+  newTag: 281b6d5b
