@@ -53,4 +53,5 @@ patchesStrategicMerge:
 - extsecret-redis.yaml
 - extsecret-stripe-webhook.yaml
 - extsecret-discord-webhook.yaml
+- deployment-api.yaml
 - deployment-domain-service.yaml

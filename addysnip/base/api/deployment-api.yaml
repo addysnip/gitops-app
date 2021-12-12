@@ -33,6 +33,8 @@ spec:
           value: "99"
         - name: GRPC_GO_LOG_SEVERITY_LEVEL
           value: info
+        - name: SESSION_COOKIE
+          value: "session"
         envFrom:
         - secretRef:
             name: api
