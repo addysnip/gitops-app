@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: domain-service
+  name: api
   namespace: addysnip
 spec:
   template:
     spec:
       containers:
-      - name: domain-service
+      - name: api
         env:
         - name: SESSION_COOKIE
           value: "session-dev"
