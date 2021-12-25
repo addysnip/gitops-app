@@ -72,7 +72,7 @@ images:
   newTag: 0a8bfa52
 - name: gcr.io/addysnip/ui
   newName: gcr.io/addysnip/ui
-  newTag: f5f815b3
+  newTag: 42b5d19f
 - name: gcr.io/addysnip/ui-dashboard
   newName: gcr.io/addysnip/ui-dashboard
   newTag: 5b961225
