@@ -51,7 +51,7 @@ images:
   newTag: c02d543d
 - name: gcr.io/addysnip/billing
   newName: gcr.io/addysnip/billing
-  newTag: c5215fb7
+  newTag: 1839d225
 - name: gcr.io/addysnip/delayed-service
   newName: gcr.io/addysnip/delayed-service
   newTag: cea7bb73
