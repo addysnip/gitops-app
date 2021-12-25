@@ -60,7 +60,7 @@ images:
   newTag: 6636562d
 - name: gcr.io/addysnip/emailer
   newName: gcr.io/addysnip/emailer
-  newTag: 4dc7bc38
+  newTag: 0a81fed0
 - name: gcr.io/addysnip/path-service
   newName: gcr.io/addysnip/path-service
   newTag: c0689f90
