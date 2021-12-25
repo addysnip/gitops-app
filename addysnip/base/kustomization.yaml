@@ -48,7 +48,7 @@ images:
   newTag: 59fd5bed
 - name: gcr.io/addysnip/api
   newName: gcr.io/addysnip/api
-  newTag: 65cb0f28
+  newTag: c02d543d
 - name: gcr.io/addysnip/billing
   newName: gcr.io/addysnip/billing
   newTag: "23825651"
