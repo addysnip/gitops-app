@@ -32,7 +32,7 @@ images:
   newTag: 129a0aab
 - name: gcr.io/addysnip/tasks-service
   newName: gcr.io/addysnip/tasks-service
-  newTag: f43b9bc2
+  newTag: 70dd4e62
 - name: gcr.io/addysnip/ui
   newName: gcr.io/addysnip/ui
   newTag: 2eeb82a9
