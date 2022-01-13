@@ -17,6 +17,7 @@ resources:
 - secrets/extsecret-smtp-noreply.yaml
 - secrets/extsecret-stripe-webhook.yaml
 - secrets/extsecret-discord-webhook.yaml
+- secrets/extsecret-tasks-service.yaml
 - analytics-service/deployment-analytics-service.yaml
 - analytics-service/service-analytics-service.yaml
 - analytics-service/cronjob-analytics.yaml
