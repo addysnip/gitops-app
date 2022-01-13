@@ -70,7 +70,7 @@ images:
   newTag: f7cfe733
 - name: gcr.io/addysnip/tasks-service
   newName: gcr.io/addysnip/tasks-service
-  newTag: 0a8bfa52
+  newTag: 680b1a29
 - name: gcr.io/addysnip/ui
   newName: gcr.io/addysnip/ui
   newTag: c7476364
