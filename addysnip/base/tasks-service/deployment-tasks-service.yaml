@@ -31,6 +31,17 @@ spec:
         - secretRef:
             name: discord-error-webhook
             optional: false
+        env:
+        - name: TRACKING_SPREADSHEETID
+          valueFrom:
+            secretKeyRef:
+              name: tracking-sheet
+              key: TRACKING_SHEETID
+        - name: TRACKING_SERVICEACCOUNT
+          valueFrom:
+            secretKeyRef:
+              name: task-service
+              key: service-key
         image: gcr.io/addysnip/tasks-service:93f3d7d7
         imagePullPolicy: Always
         name: tasks-service
