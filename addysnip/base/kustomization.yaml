@@ -67,7 +67,7 @@ images:
   newTag: c0689f90
 - name: gcr.io/addysnip/redirector-service
   newName: gcr.io/addysnip/redirector-service
-  newTag: f7cfe733
+  newTag: 1b8b6bc5
 - name: gcr.io/addysnip/tasks-service
   newName: gcr.io/addysnip/tasks-service
   newTag: a2fd75f9
