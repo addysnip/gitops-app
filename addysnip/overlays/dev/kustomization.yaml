@@ -38,7 +38,7 @@ images:
   newTag: 2eeb82a9
 - name: gcr.io/addysnip/ui-dashboard
   newName: gcr.io/addysnip/ui-dashboard
-  newTag: b3413b68
+  newTag: ef6fa338
 patchesStrategicMerge:
 - certificate.yaml
 - ingress-api.yaml
