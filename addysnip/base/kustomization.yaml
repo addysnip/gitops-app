@@ -76,4 +76,4 @@ images:
   newTag: c7476364
 - name: gcr.io/addysnip/ui-dashboard
   newName: gcr.io/addysnip/ui-dashboard
-  newTag: 2a275df3
+  newTag: 0e289c8d
