@@ -4,6 +4,9 @@ metadata:
   name: addysnip-com
   namespace: addysnip
 spec:
+  issuerRef:
+    name: addysnip-com-ca
+    kind: ClusterIssuer
   dnsNames:
   - addysnip.com
   - "dev.addysnip.com"
