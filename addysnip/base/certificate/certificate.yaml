@@ -23,6 +23,7 @@ spec:
     secretName: addysnip-com-ssl
     issuerRef:
         name: addysnip-com-ca
+        kind: ClusterIssuer
     dnsNames:
         - addysnip.com
         - www.addysnip.com
