@@ -13,3 +13,16 @@ spec:
   - "api.addysnip.com"
   - "www.addysnip.com"
   - "dashboard.addysnip.com"
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+    name: addysnip-com-ssl
+    namespace: redirector
+spec:
+    secretName: addysnip-com-ssl
+    issuerRef:
+        name: addysnip-com-ca
+    dnsNames:
+        - addysnip.com
+        - www.addysnip.com
