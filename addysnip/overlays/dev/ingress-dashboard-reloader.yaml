@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dashboard-reloader
+  namespace: addysnip
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: dashboard.dev.addysnip.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: ui-dashboard
+            port:
+              number: 80
+        path: /ws/reloader
+        pathType: Prefix
+  tls:
+  - hosts:
+    - dashboard.dev.addysnip.com
+    secretName: addysnip-com-tls

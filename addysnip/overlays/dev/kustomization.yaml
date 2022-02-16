@@ -44,6 +44,7 @@ patchesStrategicMerge:
 - ingress-api.yaml
 - ingress-ui.yaml
 - ingress-ui-dashboard.yaml
+- ingress-dashboard-reloader.yaml
 - extsecret-analytics-service.yaml
 - extsecret-api.yaml
 - extsecret-billing.yaml
