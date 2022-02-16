@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: addysnip-com-tls
   issuerRef:
-    name: cloudflare-clusterissuer
+    name: addysnip-com-ca
     kind: ClusterIssuer
   dnsNames:
   - addysnip.com
