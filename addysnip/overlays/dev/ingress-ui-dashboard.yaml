@@ -14,6 +14,13 @@ spec:
             name: ui-dashboard
             port:
               number: 80
+        path: /ws/reloader
+        pathType: Prefix
+      - backend:
+          service:
+            name: ui-dashboard
+            port:
+              number: 80
         path: /
         pathType: Prefix
   tls:
