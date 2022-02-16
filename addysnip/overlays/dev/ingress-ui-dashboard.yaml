@@ -11,7 +11,7 @@ spec:
       paths:
       - backend:
           service:
-            name: ui-dashboard
+            name: dashboard-reloader
             port:
               number: 80
         path: /ws/reloader
