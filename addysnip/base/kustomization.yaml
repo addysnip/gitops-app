@@ -27,6 +27,7 @@ resources:
 - billing/deployment-billing.yaml
 - billing/service-billing.yaml
 - dashboard-reloader/deployment.yaml
+- dashboard-reloader/rbac.yaml
 - delayed-service/deployment-delayed-service.yaml
 - domain-service/deployment-domain-service.yaml
 - domain-service/rbac.yaml
