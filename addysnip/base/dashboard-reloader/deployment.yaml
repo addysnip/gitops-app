@@ -28,6 +28,8 @@ spec:
           value: "addysnip"
         - name: SPA_NAME
           value: "ui-dashboard"
+      serviceAccount: dashboard-reloader
+      serviceAccountName: dashboard-reloader
 ---
 apiVersion: v1
 kind: Service

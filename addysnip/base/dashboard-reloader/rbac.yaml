@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: dashboard-reloader
+  namespace: addysnip
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: dashboard-reloader
+  namespace: addysnip
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - "apps"
+  resources:
+  - deployments
+  verbs:
+  - get
+  - list
+  - watch
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: dashboard-reloader
+  namespace: addysnip
+subjects:
+- kind: ServiceAccount
+  name: dashboard-reloader
+  namespace: addysnip
+roleRef:
+  kind: Role
+  name: dashboard-reloader
+  apiGroup: rbac.authorization.k8s.io
