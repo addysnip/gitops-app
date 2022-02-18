@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ui-docs
+  namespace: addysnip
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: docs.dev.addysnip.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: ui-docs
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - docs.dev.addysnip.com
+    secretName: addysnip-com-tls

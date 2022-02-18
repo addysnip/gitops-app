@@ -10,4 +10,7 @@ spec:
   dnsNames:
   - addysnip.com
   - "dev.addysnip.com"
-  - "*.dev.addysnip.com"
+  - "www.dev.addysnip.com"
+  - "api.dev.addysnip.com"
+  - "dashboard.dev.addysnip.com"
+  - "docs.dev.addysnip.com"

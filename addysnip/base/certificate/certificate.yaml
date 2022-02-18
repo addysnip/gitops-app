@@ -13,6 +13,7 @@ spec:
   - "api.addysnip.com"
   - "www.addysnip.com"
   - "dashboard.addysnip.com"
+  - "docs.addysnip.com"
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate

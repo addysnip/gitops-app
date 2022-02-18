@@ -44,6 +44,9 @@ resources:
 - ui-dashboard/deployment-ui-dashboard.yaml
 - ui-dashboard/ingress-ui-dashboard.yaml
 - ui-dashboard/service-ui-dashboard.yaml
+- ui-docs/deployment.yaml
+- ui-docs/ingress.yaml
+- ui-docs/service.yaml
 - clusterissuer.yaml
 images:
 - name: gcr.io/addysnip/analytics-service
