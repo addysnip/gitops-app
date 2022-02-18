@@ -22,7 +22,7 @@ spec:
         workload.user.cattle.io/workloadselector: apps.deployment-addysnip-ui-docs
     spec:
       containers:
-      - image: nginx:alpine
+      - image: gcr.io/addysnip/docs:base
         imagePullPolicy: Always
         name: ui-docs
         ports:
