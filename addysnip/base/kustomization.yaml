@@ -84,4 +84,4 @@ images:
   newTag: a72e0547
 - name: gcr.io/addysnip/ui-dashboard
   newName: gcr.io/addysnip/ui-dashboard
-  newTag: 4650cb58
+  newTag: 5cda3beb
