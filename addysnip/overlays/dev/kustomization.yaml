@@ -20,7 +20,7 @@ images:
   newTag: 9cd03891
 - name: gcr.io/addysnip/domain-service
   newName: gcr.io/addysnip/domain-service
-  newTag: 3513f182
+  newTag: 6fb14e19
 - name: gcr.io/addysnip/emailer
   newName: gcr.io/addysnip/emailer
   newTag: 91d1da05
