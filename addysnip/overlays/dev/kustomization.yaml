@@ -8,7 +8,7 @@ images:
   newTag: 8e480ea7
 - name: gcr.io/addysnip/api
   newName: gcr.io/addysnip/api
-  newTag: 5813d208
+  newTag: a314216c
 - name: gcr.io/addysnip/billing
   newName: gcr.io/addysnip/billing
   newTag: 21cb23de
